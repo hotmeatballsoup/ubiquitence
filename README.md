@@ -73,10 +73,10 @@ Currently we have `AutoIncrementingSequenceGenerator` which can be used auto-inc
 * Abstracted annotations/configurations so that you don't need to know the intricate details in working with these underlying frameworks
 
 ### What if I need something that isn't supported?
-[Contribute!](CONTRIBUTING.md), or file an [issue]() and label it as an **enhancement**.
+[Contribute!](CONTRIBUTING.md), or file an [issue](https://github.com/hotmeatballsoup/ubiquitence/issues) and label it as an **enhancement**.
 
 ### What if something isn't working as expected?
-File an [issue]() and label it as a **bug**.
+File an [issue](https://github.com/hotmeatballsoup/ubiquitence/issues) and label it as a **bug**.
 
 ### Contributing
 [Please see our Contributing page.](CONTRIBUTING.md)
