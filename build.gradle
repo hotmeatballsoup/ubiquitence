@@ -9,10 +9,6 @@ targetCompatibility = '1.8'
 
 group = 'io.hotmeatballsoup'
 
-repositories {
-	jcenter()
-}
-
 dependencies {
 	compile(
 		'org.mongodb.morphia:morphia:1.0.1',
@@ -29,21 +25,21 @@ jar {
 }
 
 task writePom << {
-		pom {
-				project {
-						groupId group
-						artifactId 'ubiquitence'
-						version version
+	pom {
+		project {
+			groupId group
+			artifactId 'ubiquitence'
+			version version
 
-						inceptionYear '2015'
-						licenses {
-								license {
-										name 'ubiquitence'
-										distribution 'Common persistence lib for the JVM.'
-								}
-						}
+			inceptionYear '2015'
+			licenses {
+				license {
+					name 'ubiquitence'
+					distribution 'Common persistence lib for the JVM.'
 				}
-		}.writeTo("build/libs/pom.xml")
+			}
+		}
+	}.writeTo("build/libs/pom.xml")
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -73,10 +69,11 @@ artifacts {
 }
 
 repositories {
-		mavenLocal()
-		mavenCentral()
+	jcenter()
+	mavenLocal()
+	mavenCentral()
 }
 
 task wrapper(type: Wrapper) {
-		gradleVersion = '2.4'
+	gradleVersion = '2.4'
 }
