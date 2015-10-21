@@ -27,7 +27,7 @@ jar {
 task writePom << {
 	pom {
 		project {
-			groupId group
+			groupId project.group
 			artifactId 'ubiquitence'
 			version version
 

@@ -1,6 +1,8 @@
 package io.hotmeatballsoup.ubiquitence;
 
-import java.util.Date;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Base lookup entity for <a href="https://en.wikipedia.org/wiki/Reference_table">reference data</a>.
@@ -34,56 +36,51 @@ import java.util.Date;
  * an internal tag that can be read and processed by your app code.
  */
 public abstract class BaseLookup extends BaseEntity {
-  private String name;
-  private String alias;
-  private String description;
+	@JsonProperty("name")
+	@NotEmpty
+	private String name;
+	
+	@JsonProperty("alias")
+	@NotEmpty
+	private String alias;
+	
+	@JsonProperty("description")
+	@NotEmpty
+	private String description;
 
-  public BaseLookup(Long id, String version, String createdBy, String name, String alias,
-		  String description) {
-    this(id, version, createdBy, new Date(), name, alias, description);
-  }
-
-  /**
-   * Creates a {@link BaseLookup}.
-   * 
-   * @param id			See {@link BaseEntity}
-   * @param version		See {@link BaseEntity}
-   * @param createdBy	See {@link BaseEntity}
-   * @param createdOn	See {@link BaseEntity}
-   * @param name		The lookup's name
-   * @param alias		The lookup's alias
-   * @param description	The lookup's description
-   */
-  public BaseLookup(Long id, String version, String createdBy, Date createdOn, String name,
-		  String alias, String description) {
-    super(id, version, createdBy, createdOn);
-
-    setName(name);
-    setAlias(alias);
-    setDescription(description);
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getAlias() {
-    return this.alias;
-  }
-
-  public void setAlias(String alias) {
-    this.alias = alias;
-  }
-
-  public String getDescription() {
-    return this.description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
+	public BaseLookup() {
+		super();
+	}
+	
+	public BaseLookup(String createdBy, String name, String alias, String description) {
+		super(createdBy);
+		
+		setName(name);
+		setAlias(alias);
+		setDescription(description);
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getAlias() {
+		return this.alias;
+	}
+	
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

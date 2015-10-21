@@ -81,4 +81,10 @@ File an [issue](https://github.com/hotmeatballsoup/ubiquitence/issues) and label
 ### Contributing
 [Please see our Contributing page.](CONTRIBUTING.md)
 
+### Developing
+
+#### Build locally
+
+    ./gradlew clean build writePom install [-Pversion=<version-#>]
+
 

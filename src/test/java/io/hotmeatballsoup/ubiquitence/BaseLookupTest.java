@@ -1,7 +1,5 @@
 package io.hotmeatballsoup.ubiquitence;
 
-import java.util.Date;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,8 +10,8 @@ public class BaseLookupTest {
 	@Test
 	public void createAndUseCrayonColor() {
 		// Given:
-		CrayonColor crayonColor = new CrayonColor(1L, "001", "my_db_user", new Date(),
-			"Midnight Blue", "MIDNIGHT_BLUE", "A very dark blue.");
+		CrayonColor crayonColor = new CrayonColor("my_db_user", "Midnight Blue",
+			"MIDNIGHT_BLUE", "A very dark blue.");
 		
 		// Expect:
 		Assert.assertTrue(!"VIOLET".equals(crayonColor.getAlias()));
@@ -23,9 +21,8 @@ public class BaseLookupTest {
 	 * Dummy class for showcasing purposes.
 	 */
 	private class CrayonColor extends BaseLookup {
-		public CrayonColor(Long id, String version, String createdBy, Date createdOn, String name, String alias,
-				String description) {
-			super(id, version, createdBy, createdOn, name, alias, description);
+		public CrayonColor(String createdBy, String name, String alias, String description) {
+			super(createdBy, name, alias, description);
 		}		
 	}
 }

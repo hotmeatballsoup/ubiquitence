@@ -11,8 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.hotmeatballsoup.ubiquitence.utils.seqgen.AutoIncrementingSequenceGenerator;
-
 /**
  * Test class for {@link BaseEntity}.
  */
@@ -21,15 +19,14 @@ public class BaseEntityTest {
 	public void createAndUseBaseEntity() {
 		// Given:
 		Hotmeatballsoup hms;
-		AutoIncrementingSequenceGenerator aisg = new AutoIncrementingSequenceGenerator();
 		
 		// When:
 		// Note: We don't need to use the sequence generator on DB systems that natively
 		// support auto-incrementing. This feature was added specifically to support Mongo.
-		hms = new Hotmeatballsoup(aisg.next(), "001", "my_db_user", "(555)555-5555");
+		hms = new Hotmeatballsoup("my_db_user", "(555)555-5555");
 		
 		// Then:
-		Assert.assertTrue(hms.getId() == 1L);
+		Assert.assertTrue(hms != null);
 	}
 
 	/**
@@ -46,8 +43,8 @@ public class BaseEntityTest {
 		@Pattern(regexp="(\\d{7})|(\\d{10)|")
 		private String phoneNumber;
 		
-		public Hotmeatballsoup(Long id, String version, String createdBy, String phoneNumber) {
-			super(id, version, createdBy);
+		public Hotmeatballsoup(String createdBy, String phoneNumber) {
+			super(createdBy);
 			
 			setPhoneNumber(phoneNumber);
 		}

@@ -26,7 +26,7 @@ public abstract class BaseEntity {
 	@Version
 	@JsonProperty("version")
 	@NotEmpty
-	private String version;
+	private Long version;
 	
 	@JsonProperty("created_by")
 	@NotEmpty
@@ -50,37 +50,35 @@ public abstract class BaseEntity {
 	@NotNull
 	private Date updatedOn;
 
-	public BaseEntity(Long id, String version, String createdBy) {
-		this(id, version, createdBy, new Date());
+	public BaseEntity() {
+		super();
 	}
-
+	
 	/**
 	 * Creates  {@link BaseEntity}.
 	 * 
-	 * @param id			The unique id of the entity
-	 * @param version		The entity's version, should be auto-incremented per update;
-	 *  						useful for optimistic locking
 	 * @param createdBy		DB user that created the entity
-	 * @param createdOn		Date/time the entity was created on
 	 */
-	public BaseEntity(Long id, String version, String createdBy, Date createdOn) {
+	public BaseEntity(String createdBy) {
 		super();
 		
-		this.id = id;
-		setVersion(version);
 		this.createdBy = createdBy;
-		this.createdOn = createdOn;
+		this.createdOn = new Date();
 	}
 	
 	public Long getId() {
 		return this.id;
 	}
 	
-	public String getVersion() {
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public Long getVersion() {
 		return this.version;
 	}
 	
-	public void setVersion(String version) {
+	public void setVersion(Long version) {
 		this.version = version;
 	}
 	
